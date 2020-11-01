@@ -1,0 +1,82 @@
+{
+  "name": "book-api",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "https://github.com/NedyUdombat/book-api.git",
+  "author": "Nedy Udombat",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && babel src -d dist",
+    "start": "node dist/server.js",
+    "babel-node": "babel-node --",
+    "dist": "./node_modules/.bin/babel src -d dist --presets=babili",
+    "dev": "nodemon --exec babel-node src/server.js",
+    "test": "yarn prettier && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --recursive src/tests --require @babel/register --exit",
+    "coverage": "nyc report — -reporter=text-lcov | coveralls",
+    "test-watch": "jest --watchAll --runInBand --verbose",
+    "prettier": "prettier --write '**/*.{js,jsx}'",
+    "lint": "node_modules/eslint/bin/eslint.js src --fix"
+  },
+  "engines": {
+    "node": ">=12.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn test",
+      "pre-push": "yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn prettier",
+      "git add --force"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add --force"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "7.6.4",
+    "@babel/core": "7.6.4",
+    "@babel/node": "7.6.3",
+    "@babel/plugin-transform-regenerator": "7.4.5",
+    "@babel/plugin-transform-runtime": "7.6.2",
+    "@babel/preset-env": "7.6.3",
+    "@babel/register": "7.6.2",
+    "babel-eslint": "10.0.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "6.5.1",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.4.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-prettier": "3.1.1",
+    "husky": "3.0.9",
+    "lint-staged": "9.4.2",
+    "mocha": "6.2.1",
+    "mocha-lcov-reporter": "1.3.0",
+    "nodemon": "1.19.4",
+    "nyc": "14.1.1",
+    "prettier": "1.18.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.6.3",
+    "@casl/ability": "^3.4.0",
+    "@casl/mongoose": "^2.3.2",
+    "bcryptjs": "2.4.3",
+    "cors": "2.8.5",
+    "dotenv": "8.1.0",
+    "express": "4.17.1",
+    "express-validator": "^6.6.1",
+    "jquery": "3.5.0",
+    "jsonwebtoken": "8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.2",
+    "morgan": "~1.9.1",
+    "validator": "^9.4.1",
+    "volleyball": "^1.5.1"
+  }
+}
