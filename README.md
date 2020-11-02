@@ -1,5 +1,6 @@
-# Books API - An API for adding books to a collection
+[![Build Status](https://travis-ci.com/obayomi96/library-api.svg?branch=dev)](https://travis-ci.com/obayomi96/library-api)
 
+# Books API - An API for adding books to a collection
 
 ## Installation
 
